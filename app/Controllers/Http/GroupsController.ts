@@ -1,11 +1,9 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
-import Group from 'App/Models/Mongoose/Group';
+import { getGroups } from 'App/Services/Group';
 
 export default class GroupsController {
   public async index({}: HttpContextContract) {
-    const res = await Group.find({}).sort('name').limit(4);
-
-    return res;
+    return await getGroups();
   }
 
   public async create({}: HttpContextContract) {}
