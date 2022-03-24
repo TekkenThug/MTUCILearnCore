@@ -1,9 +1,11 @@
-import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
-import { getGroups } from 'App/Services/Group';
+import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import { getGroups } from 'App/Services/Group'
 
 export default class GroupsController {
-  public async index({}: HttpContextContract) {
-    return await getGroups();
+  public async index({ request }: HttpContextContract) {
+    const { limit, page } = request.qs()
+
+    return await getGroups(page, limit)
   }
 
   public async create({}: HttpContextContract) {}
