@@ -1,9 +1,9 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Time from 'App/Models/Mongoose/Time'
+import Time from 'App/Models/Pair'
 
 export default class TimesController {
   public async index({}: HttpContextContract) {
-    return await Time.find({});
+    return Time.query().orderBy('id')
   }
 
   public async create({}: HttpContextContract) {}
