@@ -1,7 +1,11 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, HasMany, hasMany } from '@ioc:Adonis/Lucid/Orm'
+import Schedule from 'App/Models/Schedule'
 
 export default class Group extends BaseModel {
+  @hasMany(() => Schedule)
+  public schedules: HasMany<typeof Schedule>
+
   @column({ isPrimary: true })
   public id: number
 

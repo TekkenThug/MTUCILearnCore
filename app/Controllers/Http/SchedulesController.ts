@@ -10,7 +10,7 @@ export default class SchedulesController extends BaseController {
     return {
       even: queryParams.even,
       weekday: +queryParams.weekday,
-      userID: queryParams.userID || null,
+      userId: queryParams.userID || null,
       group: queryParams.group || null,
     }
   }
@@ -28,10 +28,9 @@ export default class SchedulesController extends BaseController {
   }
 
   public async post({ request }: HttpContextContract) {
-    const schedule = request.body()
-    const params = this.extractQueryParams(request)
+    const { data: schedule, even, weekday, group } = request.body()
 
-    await setSchedule(schedule, params)
+    await setSchedule(schedule, { even, weekday, group })
 
     return this.getCodeState(this.STATE.SUCCESS)
   }
