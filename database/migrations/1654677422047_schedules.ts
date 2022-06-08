@@ -9,7 +9,7 @@ export default class extends BaseSchema {
 
       table.integer('weekday_id').unsigned().references('weekdays.id')
 
-      table.integer('time_id').unsigned().references('pairs.id')
+      table.integer('time_id').unsigned().references('times.id')
 
       table.integer('group_id').unsigned().references('groups.id')
 

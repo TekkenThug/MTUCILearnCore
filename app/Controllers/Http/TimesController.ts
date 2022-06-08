@@ -1,5 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Time from 'App/Models/Pair'
+import Time from 'App/Models/Time'
 
 export default class TimesController {
   public async index({}: HttpContextContract) {

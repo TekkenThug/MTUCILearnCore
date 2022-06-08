@@ -45,11 +45,14 @@ export const getSchedule = async ({ userId, weekday, even }) => {
 
   const userGroup = await User.query().select('groupName').where('tg_id', '=', userId)
 
-  const record = await Schedule.query()
+  const records = await Schedule.query()
     .select('*')
     .where('groupId', '=', userGroup[0].groupName)
     .where('even', even)
     .where('weekdayId', weekday)
+    .orderBy('time_id')
+    .preload('time')
+    .preload('lessonType')
 
-  return !record || !record.length ? 'empty' : record
+  return !records || !records.length ? 'empty' : records
 }

@@ -2,32 +2,32 @@ import { DateTime } from 'luxon'
 import { BaseModel, column, BelongsTo, belongsTo } from '@ioc:Adonis/Lucid/Orm'
 import Weekday from 'App/Models/Weekday'
 import Group from 'App/Models/Group'
-import Pair from 'App/Models/Pair'
+import Time from 'App/Models/Time'
 import LessonType from 'App/Models/LessonType'
 
 export default class Schedule extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
-  @column()
+  @column({ serializeAs: 'weekday' })
   public weekdayId: number
 
   @belongsTo(() => Weekday)
   public weekday: BelongsTo<typeof Weekday>
 
-  @column()
+  @column({ serializeAs: 'group' })
   public groupId: number
 
   @belongsTo(() => Group)
   public group: BelongsTo<typeof Group>
 
-  @column()
+  @column({ serializeAs: 'time' })
   public timeId: number
 
-  @belongsTo(() => Pair)
-  public time: BelongsTo<typeof Pair>
+  @belongsTo(() => Time)
+  public time: BelongsTo<typeof Time>
 
-  @column()
+  @column({ serializeAs: 'lessonType' })
   public lessonTypeId: number
 
   @belongsTo(() => LessonType)

@@ -2,7 +2,7 @@ import { DateTime } from 'luxon'
 import { BaseModel, column, HasMany, hasMany } from '@ioc:Adonis/Lucid/Orm'
 import Schedule from 'App/Models/Schedule'
 
-export default class Pair extends BaseModel {
+export default class Time extends BaseModel {
   @hasMany(() => Schedule, {
     foreignKey: 'timeId',
   })
@@ -11,15 +11,15 @@ export default class Pair extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
-  @column()
+  @column({ serializeAs: 'startTime' })
   public startTime: string
 
-  @column()
+  @column({ serializeAs: 'endTime' })
   public endTime: string
 
-  @column.dateTime({ autoCreate: true })
+  @column.dateTime({ autoCreate: true, serializeAs: null })
   public createdAt: DateTime
 
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  @column.dateTime({ autoCreate: true, autoUpdate: true, serializeAs: null })
   public updatedAt: DateTime
 }
